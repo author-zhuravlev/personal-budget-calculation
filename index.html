@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Personal budget calculation</title>
+    <link rel="shortcut icon" href="./img/money.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&subset=cyrillic">
+    <link rel="stylesheet" href="./css/css.css">
+    
+</head>
+<body>
+    <header class="header">
+        <img src="./img/wallet.png" alt="Logo" class="logo">
+        <div class="header logo-text">
+            <span class="logo text orange">
+                money
+            </span>
+            <span class="logo text">
+                keeper
+            </span>
+        </div>
+    </header>
+    
+    <main class="calculation">
+        <div class="wrapper">
+            <h1 class="calculator__title">
+                Расчет личного бюджета
+            </h1>
+            <section class="calculator">
+                <div class="block-left">
+                    <div class="calculator__input-block">
+                        <div class="calculator__input-block_obligatory-expenses">
+                            <div class="calculator__text">
+                                Введите обязательные расходы
+                            </div>
+                            <div class="calculator__block">
+                                <input type="text" class="calculator__inp two" placeholder="Наименование">
+                                <input type="text" class="calculator__inp two" placeholder="Цена">
+                            </div>
+                            <div class="calculator__calculator__block">
+                                <input type="text" class="calculator__inp two" placeholder="Наименование">
+                                <input type="text" class="calculator__inp two" placeholder="Цена">
+                            </div>
+                            <div class="calculator__add">+</div>
+                            <button class="calculator__button">
+                                Утвердить
+                            </button>
+                        </div>  
+                        
+                        <div class="calculator__input-block_optional-expenses">
+                            <div class="calculator__text">
+                                Введите необязательные расходы
+                            </div>
+                            <div class="calculator__block">
+                                <input type="text" class="calculator__inp three">
+                                <input type="text" class="calculator__inp three">
+                                <input type="text" class="calculator__inp three">
+                            </div>
+                            <div class="calculator__add">+</div>
+                            <button class="calculator__button">
+                                Утвердить
+                            </button>
+                        </div>
+
+                        <div class="calculator__input-block_daily-budget-calculation">
+                            <div class="calculator__text">
+                                Расчет дневного бюджета
+                            </div>
+                            <button class="calculator__button">
+                                Рассчитать
+                            </button>
+                        </div>
+
+                        <div class="calculator__input-block_possible-income">
+                            <div class="calculator__text">
+                                Введите статьи возможного дохода через запятую
+                            </div>
+                            <input type="text" class="calculator__inp one">
+                        </div>
+
+                        <div class="calculator__input-block_checkbox">
+                            <div class="calculator__text center">
+                                <span class="calculator__text-span">Есть ли накопления:</span>
+                                <input type="checkbox" name="checkbox" id="checkbox">
+                            </div>
+                        </div>
+
+                        <div class="calculator__input-block_saving-money">
+                            <div class="calculator__block">
+                                <span class="calculator__text-span">
+                                    Сумма:
+                                </span>
+                                <input type="text" class="calculator__inp three">
+                            </div>
+                            <div class="calculator__block left">
+                                <span class="calculator__text-span">
+                                    Процент:
+                                </span>
+                                <input type="text" class="calculator__inp three">
+                            </div>
+                        </div>
+                        <button class="calculator__button start-calculation">
+                            Начать рассчет!
+                        </button>
+                    </div>
+                </div>
+
+                <div class="block-right">
+                    <div class="calculator__result">
+                        <div class="calculator__result-table">
+                            <div class="result-table-element budget">Доход:</div>
+                            <div class="result-table-element budget value"></div>
+
+                            <div class="result-table-element day-budget">Бюджет на 1 день:</div>
+                            <div class="result-table-element daybudget value"></div>
+
+                            <div class="result-table-element level">Уровень дохода:</div>
+                            <div class="result-table-element level value"></div>
+                            
+                            <div class="result-table-element expenses">Обязательные расходы:</div>
+                            <div class="result-table-element expenses value"></div>
+
+                            <div class="result-table-element optional-expenses">Возможные траты:</div>
+                            <div class="result-table-element optional-expenses value"></div>
+
+                            <div class="result-table-element income">Дополнительный доход:</div>
+                            <div class="result-table-element income value"></div>
+
+                            <div class="result-table-element month-savings">Накопления за 1 месяц:</div>
+                            <div class="result-table-element month-savings value"></div>
+
+                            <div class="result-table-element year-savings">Накопления за 1 год:</div>
+                            <div class="result-table-element year-savings value"></div>
+                        </div>
+                    </div>
+
+                    <div class="calculator__date">
+                        <div class="date year">
+                            <div class="year text">
+                                Год:
+                            </div>
+                            <div class="year date-value"></div>
+                        </div>
+                        <div class="date month">
+                            <div class="month text">
+                                Месяц:
+                            </div>
+                            <div class="month date-value"></div>
+                        </div>
+                        <div class="date day">
+                            <div class="day text">
+                                День:
+                            </div>
+                            <div class="day date-value"></div>
+                        </div>
+                    </div>
+                </div>    
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="wrapper">
+            <div class="logo-text footer">
+                <span class="logo text orange">
+                    money
+                </span>
+                <span class="logo text">
+                    keeper
+                </span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
