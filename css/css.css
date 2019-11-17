@@ -76,7 +76,7 @@ main.calculation {
 h1.calculator__title {
     font-size: 25px;
     text-align: center;
-    padding: 30px 0 30px 0;
+    padding: 30px 0 20px 0;
 }
 
 .calculator {
@@ -155,7 +155,7 @@ h1.calculator__title {
 
 .calculator__button.start-calculation {
     padding: 12px 26px;
-    margin: 40px auto;
+    margin: 10px auto;
     font-size: 16px;
 }
 
