@@ -14,8 +14,6 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    blockInput("true", "default");
-
 
     function clearValue() {
         const money = document.querySelector('.modal-window .calculator__inp.budget'),
@@ -32,6 +30,8 @@ window.addEventListener('DOMContentLoaded', () => {
             btnNext = document.querySelector('.modal-window .calculator__button'),
             money = document.querySelector('.modal-window .calculator__inp.budget'),
             date = document.querySelector('.modal-window .calculator__inp.date'),
+            moneyValue = document.querySelector(".result-table-element.budget.value"),
+            // dateValue = document.querySelector(),
             btnClose = document.querySelector('.close-modal');
 
         btnStart.addEventListener('click', () => {
@@ -40,22 +40,24 @@ window.addEventListener('DOMContentLoaded', () => {
         });
 
         btnNext.addEventListener('click', () => {
-            if (money.value && date.value) {
+
+            if (money.value.trim() && date.value.trim() && !isNaN(money.value)) {
                 appData.money = money.value;
                 appData.timeData = date.value;
-    
+        
                 modalWindow.style.display = "none";
                 document.body.style.overflow = "";
 
-                // добавить вывод данных на страницу
-
+                moneyValue.textContent = money.value;
+                // добавить вывод/проверку даты
                 clearValue();
 
                 blockInput("", "pointer");
                 console.log(appData);
             } else {
-                money.placeholder = "Введите данные!";
-                date.placeholder = "Введите данные!";
+                clearValue();
+                money.placeholder = "Введите корректные данные!";
+                date.placeholder = "Введите корректные данные!";
 
                 modalWindow.style.color = "red";
             }
@@ -68,8 +70,29 @@ window.addEventListener('DOMContentLoaded', () => {
             clearValue();
         });
     }
-    startCalculation();
 
+
+    function countObligatoryExpenses () {
+        const expensesBtn = document.querySelector('.calculator__input-block_obligatory-expenses .calculator__button'),
+            expensesValue = document.querySelector('.expenses.value');
+
+        expensesBtn.addEventListener('click', () => {
+            let sum = 0;
+            const expenses = document.querySelectorAll('.calculator__input-block_obligatory-expenses input');
+
+            for (let i = 0; i < expenses.length; i++) {
+                let a = expenses[i].value,
+                    b = expenses[++i].value;
+
+
+                if (a.trim() && b.trim()) {
+                    appData.expenses[a] = +b;
+                    sum += +b;
+                    expensesValue.textContent = sum;
+                }
+            }
+        });
+    }
 
 
 
@@ -82,5 +105,9 @@ window.addEventListener('DOMContentLoaded', () => {
         savings : false
     };
 
+
+    blockInput("true", "default");
+    startCalculation();
+    countObligatoryExpenses();
 
 });
