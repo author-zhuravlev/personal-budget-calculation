@@ -23,6 +23,23 @@ window.addEventListener('DOMContentLoaded', () => {
         date.value = "";
     }
 
+    function addInput() {
+        const add = document.querySelectorAll('.calculator__add');
+
+        add.forEach((item, i) => {            
+            item.addEventListener('click', () => {
+                const calculatorBlock = item.previousElementSibling,
+                    newCalculatorBlock = calculatorBlock.cloneNode(true);
+                   
+                for (let i = 0; i < newCalculatorBlock.childNodes.length; i++) {
+                    if (i % 2 != 0) {
+                        newCalculatorBlock.childNodes[i].value = "";
+                    } 
+                }
+                item.parentNode.insertBefore(newCalculatorBlock, item);
+            });
+        });
+    }
 
     function startCalculation() {
         const btnStart = document.querySelector('.start-calculation'),
@@ -107,6 +124,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
     blockInput("true", "default");
+    addInput();
     startCalculation();
     countObligatoryExpenses();
 
