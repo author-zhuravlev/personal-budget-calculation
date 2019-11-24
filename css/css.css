@@ -103,9 +103,27 @@ h1.calculator__title {
     outline: 0;
 }
 
-.calculator__add {
+.calculator__quantity-change-fields {
+    display: flex;
+}
+
+.quantity-change-fields.minus {
+    position: relative;
+}
+
+.minus::before {
+    content: '';
+    background-color: #000;
+    position: absolute;
+    height: 2px;
+    width: 12px;
+    top: 13px;
+    left: 9px;
+}
+
+.quantity-change-fields {
     text-align: center;
-    width: 7vh;
+    width: 30px;
     padding: 4px;
     font-weight: 400;
     font-size: 20px;

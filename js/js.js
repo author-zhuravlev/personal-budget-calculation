@@ -1,5 +1,12 @@
 window.addEventListener('DOMContentLoaded', () => {
     
+    const startBtn = document.querySelector('.calculator__button.start-calculation'),
+        addBtn = document.querySelectorAll('.quantity-change-fields.plus'),
+        deleteBtn = document.querySelectorAll('.quantity-change-fields.minus'),
+        obligatoryExpBtn = document.querySelector('.calculator__input-block_obligatory-expenses .calculator__button'),
+        optionalExpBtn = document.querySelector('.calculator__input-block_optional-expenses .calculator__button'),
+        dailyBudgetBtn = document.querySelector('.calculator__input-block_daily-budget-calculation .calculator__button');
+
     function blockInput(forbid, cursor) {
         const btns = document.querySelectorAll('.calculator .calculator__button'),
             calculatorInp = document.querySelectorAll('.calculator .calculator__inp');
@@ -14,7 +21,6 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
     function clearValue() {
         const money = document.querySelector('.modal-window .calculator__inp.budget'),
             date = document.querySelector('.modal-window .calculator__inp.date');
@@ -24,11 +30,11 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     function addInput() {
-        const add = document.querySelectorAll('.calculator__add');
+        // const addBtn = document.querySelectorAll('.quantity-change-fields.plus');
 
-        add.forEach((item, i) => {            
-            item.addEventListener('click', () => {
-                const calculatorBlock = item.previousElementSibling,
+        addBtn.forEach(item => {           
+        //     item.addEventListener('click', () => {
+                const calculatorBlock = item.parentNode.previousElementSibling,
                     newCalculatorBlock = calculatorBlock.cloneNode(true);
                    
                 for (let i = 0; i < newCalculatorBlock.childNodes.length; i++) {
@@ -36,25 +42,32 @@ window.addEventListener('DOMContentLoaded', () => {
                         newCalculatorBlock.childNodes[i].value = "";
                     } 
                 }
-                item.parentNode.insertBefore(newCalculatorBlock, item);
-            });
+                item.parentNode.parentNode.insertBefore(newCalculatorBlock, item.parentNode);
+            // });
+        });
+    }
+
+    function deleteInput() {
+
+        deleteBtn.forEach(item => {            
+                const calculatorBlock = item.parentNode.previousElementSibling;
+    
+                calculatorBlock.remove();
+                countObligatoryExpenses();
         });
     }
 
     function startCalculation() {
-        const btnStart = document.querySelector('.start-calculation'),
-            modalWindow = document.querySelector('.modal-window'),
+        const modalWindow = document.querySelector('.modal-window'),
             btnNext = document.querySelector('.modal-window .calculator__button'),
             money = document.querySelector('.modal-window .calculator__inp.budget'),
             date = document.querySelector('.modal-window .calculator__inp.date'),
             moneyValue = document.querySelector(".result-table-element.budget.value"),
             // dateValue = document.querySelector(),
             btnClose = document.querySelector('.close-modal');
-
-        btnStart.addEventListener('click', () => {
-            modalWindow.style.display = "block";
-            document.body.style.overflow = "hidden";
-        });
+          
+        modalWindow.style.display = "block";
+        document.body.style.overflow = "hidden";
 
         btnNext.addEventListener('click', () => {
 
@@ -88,30 +101,25 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function countObligatoryExpenses() {
+        const expensesValue = document.querySelector('.expenses.value');
 
-    function countObligatoryExpenses () {
-        const expensesBtn = document.querySelector('.calculator__input-block_obligatory-expenses .calculator__button'),
-            expensesValue = document.querySelector('.expenses.value');
+        let sum = 0;
+        const expenses = document.querySelectorAll('.calculator__input-block_obligatory-expenses input');
 
-        expensesBtn.addEventListener('click', () => {
-            let sum = 0;
-            const expenses = document.querySelectorAll('.calculator__input-block_obligatory-expenses input');
-
-            for (let i = 0; i < expenses.length; i++) {
-                let a = expenses[i].value,
-                    b = expenses[++i].value;
+        for (let i = 0; i < expenses.length; i++) {
+            let a = expenses[i].value,
+                b = expenses[++i].value;
 
 
-                if (a.trim() && b.trim()) {
-                    appData.expenses[a] = +b;
-                    sum += +b;
-                    expensesValue.textContent = sum;
-                }
+            if (a.trim() && b.trim()) {
+                appData.expenses[a] = +b;
+                sum += +b;
+                expensesValue.textContent = sum;
             }
-        });
+        }
     }
-
-
+    
 
     const appData = {
         money: "",
@@ -124,8 +132,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
     blockInput("true", "default");
-    addInput();
-    startCalculation();
-    countObligatoryExpenses();
+
+    startBtn.addEventListener('click', startCalculation);
+    addBtn.forEach(item => item.addEventListener('click', addInput));
+    deleteBtn.forEach(item => item.addEventListener('click', deleteInput));
+    obligatoryExpBtn.addEventListener('click', countObligatoryExpenses);
 
 });
