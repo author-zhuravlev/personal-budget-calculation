@@ -1,12 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
     
-    const startBtn = document.querySelector('.calculator__button.start-calculation'),
-        addBtn = document.querySelectorAll('.quantity-change-fields.plus'),
-        deleteBtn = document.querySelectorAll('.quantity-change-fields.minus'),
-        obligatoryExpBtn = document.querySelector('.calculator__input-block_obligatory-expenses .calculator__button'),
-        optionalExpBtn = document.querySelector('.calculator__input-block_optional-expenses .calculator__button'),
-        dailyBudgetBtn = document.querySelector('.calculator__input-block_daily-budget-calculation .calculator__button');
-
     function blockInput(forbid, cursor) {
         const btns = document.querySelectorAll('.calculator .calculator__button'),
             calculatorInp = document.querySelectorAll('.calculator .calculator__inp');
@@ -30,10 +23,10 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     function addInput() {
-        // const addBtn = document.querySelectorAll('.quantity-change-fields.plus');
+        const addBtn = document.querySelectorAll('.quantity-change-fields.plus');
 
         addBtn.forEach(item => {           
-        //     item.addEventListener('click', () => {
+            item.addEventListener('click', () => {
                 const calculatorBlock = item.parentNode.previousElementSibling,
                     newCalculatorBlock = calculatorBlock.cloneNode(true);
                    
@@ -43,31 +36,37 @@ window.addEventListener('DOMContentLoaded', () => {
                     } 
                 }
                 item.parentNode.parentNode.insertBefore(newCalculatorBlock, item.parentNode);
-            // });
+            });
         });
     }
 
     function deleteInput() {
+        const deleteBtn = document.querySelectorAll('.quantity-change-fields.minus');
 
-        deleteBtn.forEach(item => {            
+        deleteBtn.forEach(item => { 
+            item.addEventListener('click', () => {
                 const calculatorBlock = item.parentNode.previousElementSibling;
-    
+                    
                 calculatorBlock.remove();
                 countObligatoryExpenses();
+            });           
         });
     }
 
     function startCalculation() {
-        const modalWindow = document.querySelector('.modal-window'),
+        const startBtn = document.querySelector('.calculator__button.start-calculation'),
+            modalWindow = document.querySelector('.modal-window'),
             btnNext = document.querySelector('.modal-window .calculator__button'),
             money = document.querySelector('.modal-window .calculator__inp.budget'),
             date = document.querySelector('.modal-window .calculator__inp.date'),
             moneyValue = document.querySelector(".result-table-element.budget.value"),
             // dateValue = document.querySelector(),
             btnClose = document.querySelector('.close-modal');
-          
-        modalWindow.style.display = "block";
-        document.body.style.overflow = "hidden";
+        
+        startBtn.addEventListener('click', () => {
+            modalWindow.style.display = "block";
+            document.body.style.overflow = "hidden";
+        });
 
         btnNext.addEventListener('click', () => {
 
@@ -130,12 +129,13 @@ window.addEventListener('DOMContentLoaded', () => {
         savings : false
     };
 
-
+    startCalculation();
     blockInput("true", "default");
-
-    startBtn.addEventListener('click', startCalculation);
-    addBtn.forEach(item => item.addEventListener('click', addInput));
-    deleteBtn.forEach(item => item.addEventListener('click', deleteInput));
+    addInput();
+    deleteInput();
+    countObligatoryExpenses();
+    
+    const obligatoryExpBtn = document.querySelector('.calculator__input-block_obligatory-expenses .calculator__button');
     obligatoryExpBtn.addEventListener('click', countObligatoryExpenses);
 
 });
