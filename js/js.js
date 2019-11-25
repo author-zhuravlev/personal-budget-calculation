@@ -43,12 +43,17 @@ window.addEventListener('DOMContentLoaded', () => {
     function deleteInput() {
         const deleteBtn = document.querySelectorAll('.quantity-change-fields.minus');
 
-        deleteBtn.forEach(item => { 
+        deleteBtn.forEach((item, i )=> { 
             item.addEventListener('click', () => {
                 const calculatorBlock = item.parentNode.previousElementSibling;
                     
                 calculatorBlock.remove();
-                countObligatoryExpenses();
+                if (i === 0) {
+                    countObligatoryExpenses();
+                } else {
+                    countOptionalExpenses();
+                }
+
             });           
         });
     }
@@ -101,10 +106,9 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     function countObligatoryExpenses() {
-        const expensesValue = document.querySelector('.expenses.value');
-
+        const expensesValue = document.querySelector('.expenses.value'),
+            expenses = document.querySelectorAll('.calculator__input-block_obligatory-expenses input');
         let sum = 0;
-        const expenses = document.querySelectorAll('.calculator__input-block_obligatory-expenses input');
 
         for (let i = 0; i < expenses.length; i++) {
             let a = expenses[i].value,
@@ -119,6 +123,18 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
     
+    function countOptionalExpenses() {
+        const expensesValue = document.querySelector('.optional-expenses.value'),
+            expenses = document.querySelectorAll('.calculator__input-block_optional-expenses input');
+           
+            expensesValue.textContent = "";
+
+
+            expenses.forEach((item, i) => {
+                    expensesValue.textContent += `${item.value} `;
+            });
+
+    }
 
     const appData = {
         money: "",
@@ -133,9 +149,10 @@ window.addEventListener('DOMContentLoaded', () => {
     blockInput("true", "default");
     addInput();
     deleteInput();
-    countObligatoryExpenses();
     
-    const obligatoryExpBtn = document.querySelector('.calculator__input-block_obligatory-expenses .calculator__button');
+    const obligatoryExpBtn = document.querySelector('.calculator__input-block_obligatory-expenses .calculator__button'),
+        optionalExpBtn = document.querySelector('.calculator__input-block_optional-expenses .calculator__button');
+    
     obligatoryExpBtn.addEventListener('click', countObligatoryExpenses);
-
+    optionalExpBtn.addEventListener('click', countOptionalExpenses);
 });
