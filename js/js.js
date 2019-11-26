@@ -159,6 +159,21 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function possibleIncome() {
+        const possibleIncomeInp = document.querySelector(".calculator__input-block_possible-income .calculator__inp.one"),
+            resultIncome = document.querySelector(".result-table-element.income.value");
+        
+        possibleIncomeInp.addEventListener('change', () => {
+            if (possibleIncomeInp.value.trim()) {
+                appData.income = possibleIncomeInp.value.split(',');
+                resultIncome.textContent = appData.income;
+            } else {
+                alert("Вы ввели некоректные данные!");
+            }
+        });
+         
+    }
+
     const appData = {
         money: "",
         timeData: "",
@@ -172,11 +187,13 @@ window.addEventListener('DOMContentLoaded', () => {
     blockInput("true", "default");
     addInput();
     deleteInput();
+    possibleIncome();
     
-    const obligatoryExpBtn = document.querySelector('.calculator__input-block_obligatory-expenses .calculator__button'),
-        optionalExpBtn = document.querySelector('.calculator__input-block_optional-expenses .calculator__button'),
+    const obligatoryExpBtn = document.querySelector(".calculator__input-block_obligatory-expenses .calculator__button"),
+        optionalExpBtn = document.querySelector(".calculator__input-block_optional-expenses .calculator__button"),
         budgetBtn = document.querySelector(".calculator__input-block_daily-budget-calculation .calculator__button");
-    
+
+
     obligatoryExpBtn.addEventListener('click', countObligatoryExpenses);
     optionalExpBtn.addEventListener('click', countOptionalExpenses);
     budgetBtn.addEventListener('click', dailyBudgetCalc);
