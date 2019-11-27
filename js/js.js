@@ -174,6 +174,42 @@ window.addEventListener('DOMContentLoaded', () => {
          
     }
 
+    function changingCheckbox() {
+        const checkbox = document.getElementById("checkbox");
+
+        checkbox.addEventListener('click', function() {
+            const sum = document.getElementById('sum'),
+                percent = document.getElementById('percent');
+
+            sum.value = "";
+            percent.value = "";
+            accumulationMoney();
+
+            if (this.checked) {
+                appData.savings = true;
+            } else {
+                appData.savings = false;
+            }
+        });
+    }
+
+    function accumulationMoney() {
+        const monthSavings = document.querySelector('.result-table-element.month-savings.value'),
+            yearSavings = document.querySelector('.result-table-element.year-savings.value');
+
+            const savings = appData.savings,
+                sumValue = sum.value,
+                percentValue = percent.value;
+
+            if (savings && !isNaN(sumValue) && !isNaN(percentValue)) {
+                appData.mounthIncome = sumValue/100/12*percentValue;
+                appData.yearIncome = sumValue/100*percentValue;
+    
+                monthSavings.textContent = appData.mounthIncome.toFixed(1);
+                yearSavings.textContent = appData.yearIncome.toFixed(1);
+            }
+    }
+
     const appData = {
         money: "",
         timeData: "",
@@ -188,14 +224,17 @@ window.addEventListener('DOMContentLoaded', () => {
     addInput();
     deleteInput();
     possibleIncome();
+    changingCheckbox();
     
     const obligatoryExpBtn = document.querySelector(".calculator__input-block_obligatory-expenses .calculator__button"),
         optionalExpBtn = document.querySelector(".calculator__input-block_optional-expenses .calculator__button"),
-        budgetBtn = document.querySelector(".calculator__input-block_daily-budget-calculation .calculator__button");
-
+        budgetBtn = document.querySelector(".calculator__input-block_daily-budget-calculation .calculator__button"),
+        sum = document.getElementById('sum'),
+        percent = document.getElementById('percent');
 
     obligatoryExpBtn.addEventListener('click', countObligatoryExpenses);
     optionalExpBtn.addEventListener('click', countOptionalExpenses);
     budgetBtn.addEventListener('click', dailyBudgetCalc);
-
+    sum.addEventListener('input', accumulationMoney);
+    percent.addEventListener('input', accumulationMoney);
 });
