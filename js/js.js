@@ -67,7 +67,9 @@ window.addEventListener('DOMContentLoaded', () => {
                 money = document.querySelector(".modal-window .calculator__inp.budget"),
                 date = document.querySelector(".modal-window .calculator__inp.date"),
                 moneyValue = document.querySelector(".result-table-element.budget.value"),
-                // dateValue = document.querySelector(),
+                yearValue = document.querySelector(".year.date-value"),
+                monthValue = document.querySelector(".month.date-value"),
+                dayValue = document.querySelector(".day.date-value"),
                 btnClose = document.querySelector(".close-modal");
             
             startBtn.addEventListener('click', () => {
@@ -84,12 +86,13 @@ window.addEventListener('DOMContentLoaded', () => {
                     modalWindow.style.display = "none";
                     document.body.style.overflow = "";
 
-                    moneyValue.textContent = money.value;
-                    // добавить вывод/проверку даты
-                    appData.clearValue();
+                    moneyValue.textContent = appData.money;
+                    yearValue.textContent = new Date(Date.parse(appData.timeData)).getFullYear();
+                    monthValue.textContent = new Date(Date.parse(appData.timeData)).getMonth() + 1;
+                    dayValue.textContent = new Date(Date.parse(appData.timeData)).getDate();
 
+                    appData.clearValue();
                     appData.blockInput("", "pointer");
-                    console.log(appData);
                 } else {
                     appData.clearValue();
                     money.placeholder = "Введите корректные данные!";
