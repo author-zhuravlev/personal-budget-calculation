@@ -4,7 +4,6 @@ a, img, label, footer, header {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
 }
@@ -26,8 +25,17 @@ body {
 }
 
 .wrapper {
-    width: 90%;
     margin: 0 auto;
+    max-width: 1140px;
+}
+
+.wrapper-result-table {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    top: 0;
+    left: 0;
 }
 
 .center {
@@ -37,13 +45,13 @@ body {
 }
 
 .two {
-    width: 21vw;
+    width: 275px;
 }
 .three {
-    width: 13.8vw;
+    width: 179px;
 }
 .one {
-    width: 43.4vw;
+    width: 562px;
     margin: 0 auto;
 }
 
@@ -60,6 +68,7 @@ header.header {
 .logo.text {
     font-weight: bold;
     font-size: 20px;
+    /* font-size: 1.5vmax; */
 }
 
 .orange {
@@ -71,6 +80,35 @@ header.header {
 main.calculation {
     background: #faf8f5;
     padding-bottom: 25px;
+    position: relative;
+}
+
+.spinner {
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    display: none;
+}
+
+.spinner-line {
+    content: '';
+    background: #000;
+    width: 25px;
+    height: 2px;
+    position: absolute;
+    top: 10px;
+    left: 7px;
+}
+
+.diagonal {
+    margin-top: 8px;
+}
+
+.part-2 {
+    margin-top: 16px;
 }
 
 h1.calculator__title {
@@ -85,7 +123,7 @@ h1.calculator__title {
 }
 
 .block-left, .block-right {
-    width: 50%;
+    width: 100%;
 }
 
 .calculator__text {
@@ -175,7 +213,7 @@ h1.calculator__title {
 .calculator__button.start-calculation {
     padding: 12px 26px;
     margin: 10px auto;
-    font-size: 16px;
+    font-size: 17px;
 }
 
 /* result */
@@ -196,12 +234,12 @@ h1.calculator__title {
 }
 
 .result-table-element {
-    margin: 5px;
+    margin: 15px 5px;
     width: calc(48% - 4px);
     min-height: 20px;
     padding: 12px;
     font-weight: 500;
-    line-height: 2;
+    line-height: 1;
 }
 
 .value {
@@ -297,4 +335,35 @@ footer .logo-text {
 
 .modal-text {
     margin: 10px 4px;
+}
+
+.close-modal-resultTable {
+    position: absolute;
+    margin-top: 10px;
+    right: 5px;
+    padding: 12px;
+    cursor: pointer;
+    display: none;
+}
+
+.close-modal-resultTable:before {
+    content: '';
+    background-color: #000;
+    position: absolute;
+    height: 1px;
+    width: 25px;
+    top: 11px;
+    left: -4px;
+    transform: rotate(-45deg);
+}
+
+.close-modal-resultTable:after {
+    content: '';
+    background-color: #000;
+    position: absolute;
+    height: 1px;
+    width: 25px;
+    top: 11px;
+    left: -4px;
+    transform: rotate(45deg);
 }

@@ -30,17 +30,31 @@ window.addEventListener('DOMContentLoaded', () => {
         addInput: function() {
             const addBtn = document.querySelectorAll(".quantity-change-fields.plus");
 
-            addBtn.forEach(item => {           
+            addBtn.forEach((item, i)=> {           
                 item.addEventListener('click', () => {
-                    const calculatorBlock = item.parentNode.previousElementSibling,
-                        newCalculatorBlock = calculatorBlock.cloneNode(true);
-                       
-                    for (let i = 0; i < newCalculatorBlock.childNodes.length; i++) {
-                        if (i % 2 != 0) {
-                            newCalculatorBlock.childNodes[i].value = "";
-                        } 
+                    const calculatorBlock = document.createElement('div');
+                    
+                    calculatorBlock.classList.add('calculator__block');
+                    item.parentNode.parentNode.insertBefore(calculatorBlock, item.parentNode);
+
+                    if (i % 2 == 0) {
+                        const calculatorElemTwo = `
+                            <div class="calculator__block">
+                                <input type="text" class="calculator__inp two" placeholder="Наименование">
+                                <input type="text" class="calculator__inp two" placeholder="Цена">
+                            </div>
+                        `;
+                        calculatorBlock.innerHTML = calculatorElemTwo;
+                    }else {
+                        const calculatorElemThree = `
+                            <div class="calculator__block">
+                                <input type="text" class="calculator__inp three">
+                                <input type="text" class="calculator__inp three">
+                                <input type="text" class="calculator__inp three">
+                            </div>
+                        `;
+                        calculatorBlock.innerHTML = calculatorElemThree;
                     }
-                    item.parentNode.parentNode.insertBefore(newCalculatorBlock, item.parentNode);
                 });
             });
         },
@@ -70,7 +84,8 @@ window.addEventListener('DOMContentLoaded', () => {
                 yearValue = document.querySelector(".year.date-value"),
                 monthValue = document.querySelector(".month.date-value"),
                 dayValue = document.querySelector(".day.date-value"),
-                btnClose = document.querySelector(".close-modal");
+                btnClose = document.querySelector(".close-modal"),
+                reg = /\d\d\d\d-\d\d-\d\d/;
             
             startBtn.addEventListener('click', () => {
                 modalWindow.style.display = "block";
@@ -79,7 +94,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
             btnNext.addEventListener('click', () => {
 
-                if (money.value.trim() && date.value.trim() && !isNaN(money.value)) {
+                if (money.value.trim() && date.value.trim() && !isNaN(money.value)
+                    && reg.test(date.value)) {
                     appData.money = money.value;
                     appData.timeData = date.value;
             
@@ -205,6 +221,44 @@ window.addEventListener('DOMContentLoaded', () => {
                 monthSavings.textContent = appData.mounthIncome.toFixed(1);
                 yearSavings.textContent = appData.yearIncome.toFixed(1);
             }
+        },
+        showResultTable: function() {
+            const blockRight = document.querySelector(".block-right"),
+                spinner = document.querySelector(".spinner"),
+                sectionCalc = document.querySelector(".calculator"),
+                closeBtn = document.querySelector(".close-modal-resultTable");
+
+                    
+            spinner.addEventListener('touchstart', () => {
+                blockRight.classList.add('block-right-mobile');
+                blockRight.classList.remove('block-right');
+
+                const wrapperResTable = document.createElement('div');
+                wrapperResTable.appendChild(blockRight);
+                wrapperResTable.classList.add('wrapper-result-table');
+                sectionCalc.appendChild(wrapperResTable);
+                
+                spinner.style.display = 'none';
+
+                closeBtn.style.display = 'block';
+            });
+        },
+        closeResultTable: function() {
+            const blockRight = document.querySelector(".block-right"),
+                spinner = document.querySelector(".spinner"),
+                closeBtn = document.querySelector(".close-modal-resultTable");              
+
+            closeBtn.addEventListener('touchstart', () => {
+                const wrapperResTable = document.querySelector(".wrapper-result-table");
+
+                blockRight.classList.remove('block-right-mobile');
+                blockRight.classList.add('block-right');
+
+                wrapperResTable.remove();
+                spinner.style.display = 'block';
+
+                closeBtn.style.display = 'none';
+            });
         }
     };
 
@@ -214,6 +268,8 @@ window.addEventListener('DOMContentLoaded', () => {
     appData.deleteInput();
     appData.possibleIncome();
     appData.changingCheckbox();
+    appData.showResultTable();
+    appData.closeResultTable();
     
     const obligatoryExpBtn = document.querySelector(".calculator__input-block_obligatory-expenses .calculator__button"),
         optionalExpBtn = document.querySelector(".calculator__input-block_optional-expenses .calculator__button"),

@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&subset=cyrillic">
     <link rel="stylesheet" href="./css/css.css">
     <link rel="stylesheet" href="./css/animation.css">
-    
+    <link rel="stylesheet" href="./css/mobile.css">
 </head>
+
 <body>
     <header class="header">
         <img src="./img/wallet.png" alt="Logo" class="logo">
@@ -23,14 +24,19 @@
             </span>
         </div>
     </header>
-    
+
     <main class="calculation">
+        <div class="spinner">
+            <span class="spinner-line diagonal part-1"></span>
+            <span class="spinner-line horizontal"></span>
+            <span class="spinner-line diagonal part-2"></span>
+        </div>
         <div class="wrapper">
             <h1 class="calculator__title">
-                Расчет личного бюджета
+                Расчёт личного бюджета
             </h1>
             <button class="calculator__button start-calculation">
-                Начать рассчет!
+                Начать расчёт!
             </button>
             <section class="calculator">
                 <div class="block-left">
@@ -117,6 +123,8 @@
                 <div class="block-right">
                     <div class="calculator__result">
                         <div class="calculator__result-table">
+                            <div class="close-modal-resultTable"></div>
+
                             <div class="result-table-element budget">Доход:</div>
                             <div class="result-table-element budget value"></div>
 

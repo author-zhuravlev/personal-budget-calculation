@@ -1,0 +1,176 @@
+@media screen and (max-width: 1200px) {
+    
+    .wrapper {
+        width: 960px;
+    }
+
+    .two {
+        width: 230px;
+    }
+    .three {
+        width: 149px;
+    }
+    .one {
+        width: 472px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+
+    .wrapper {
+        width: 720px;
+    }
+
+    .result-table-element {
+        margin: 8px 5px;
+    }
+
+    .two {
+        width: 170px;
+    }
+    .three {
+        width: 109px;
+    }
+    .one {
+        width: 352px;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    
+    .wrapper {
+        width: 95%;
+    }
+
+    .block-right {
+        display: none;
+    }
+
+    .block-right-mobile {
+        position: absolute;
+        top: 0;
+        left: 0px;
+        width: 90%;
+    }
+
+    .calculator__result-table {
+        padding: 0;
+        animation: fadeInLeft 0.5s;
+    }
+
+    .block-left {
+        width: 100%;
+    }
+    
+    .spinner {
+        display: block;
+    }
+
+    .calculator__date {
+        background: #fff;
+        margin-left: 30px;
+        border-radius: 2.5px;
+    }
+
+    .date .text {
+        margin: 0 8px 5px 0;
+    }
+
+    .two {
+        width: 450px;
+    }
+    .three {
+        width: 332px;
+    }
+    .one {
+        width: 540px;
+    }
+
+    .calculator__input-block_obligatory-expenses .calculator__block {
+        padding: 15px;
+    }
+
+    .calculator__input-block_obligatory-expenses,
+    .calculator__input-block_optional-expenses,
+    .calculator__input-block_checkbox,
+    .calculator__input-block_possible-income,
+    .calculator__input-block_saving-money, 
+    .calculator__block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    
+    .two {
+        width: 330px;
+    }
+    .three {
+        width: 232px;
+    }
+    .one {
+        width: 370px;
+    }
+
+    .date-value {
+        padding: 12px 20px;
+    }
+}
+
+
+@media screen and (max-width: 416px) {
+    
+    .spinner  {
+        width: 30px;
+        height: 30px;
+    }
+
+    .spinner-line {
+        width: 20px;
+        top: 6px;
+        left: 5px;
+    }
+
+    .two {
+        width: 300px;
+    }
+    .three {
+        width: 222px;
+    }
+    .one {
+        width: 320px;
+    }
+
+    h1.calculator__title {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    
+    .two {
+        width: 280px;
+    }
+    .three {
+        width: 190px;
+    }
+    .one {
+        width: 290px;
+    }
+
+    h1.calculator__title {
+        font-size: 20px;
+    }
+
+    .result-table-element {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        text-align: center;
+    }
+}
