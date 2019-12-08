@@ -134,7 +134,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 let a = expenses[i].value,
                     b = expenses[++i].value;
 
-                if (a.trim() && b.trim()) {
+                if (a.trim() && b.trim() && !isNaN(b)) {
                     appData.expenses[a] = +b;
                     sum += +b;
                     expensesValue.textContent = sum;
@@ -225,7 +225,6 @@ window.addEventListener('DOMContentLoaded', () => {
         showResultTable: function() {
             const blockRight = document.querySelector(".block-right"),
                 spinner = document.querySelector(".spinner"),
-                sectionCalc = document.querySelector(".calculator"),
                 closeBtn = document.querySelector(".close-modal-resultTable");
 
                     
@@ -233,10 +232,8 @@ window.addEventListener('DOMContentLoaded', () => {
                 blockRight.classList.add('block-right-mobile');
                 blockRight.classList.remove('block-right');
 
-                const wrapperResTable = document.createElement('div');
-                wrapperResTable.appendChild(blockRight);
-                wrapperResTable.classList.add('wrapper-result-table');
-                sectionCalc.appendChild(wrapperResTable);
+                const wrapperBlockRight = document.querySelector(".wrapper-block-right");
+                wrapperBlockRight.classList.add('wrapper-result-table');
                 
                 spinner.style.display = 'none';
 
@@ -249,12 +246,12 @@ window.addEventListener('DOMContentLoaded', () => {
                 closeBtn = document.querySelector(".close-modal-resultTable");              
 
             closeBtn.addEventListener('touchstart', () => {
-                const wrapperResTable = document.querySelector(".wrapper-result-table");
+                const wrapperBlockRight = document.querySelector(".wrapper-block-right");
+                wrapperBlockRight.classList.remove('wrapper-result-table');
 
                 blockRight.classList.remove('block-right-mobile');
                 blockRight.classList.add('block-right');
 
-                wrapperResTable.remove();
                 spinner.style.display = 'block';
 
                 closeBtn.style.display = 'none';

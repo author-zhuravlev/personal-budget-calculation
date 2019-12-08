@@ -73,8 +73,17 @@
         border-radius: 2.5px;
     }
 
+    .date {
+        display: flex;
+        flex-direction: column;
+    }
+
     .date .text {
-        margin: 0 8px 5px 0;
+        margin: 8px 0;
+    }
+
+    .calculator__block.left {
+        margin-left: 0;
     }
 
     .two {
