@@ -63,7 +63,7 @@
         width: 100%;
     }
     
-    .spinner {
+    .burger {
         display: block;
     }
 
@@ -80,6 +80,10 @@
 
     .date .text {
         margin: 8px 0;
+    }
+
+    .date-value {
+        margin-bottom: 12px;
     }
 
     .calculator__block.left {
@@ -133,12 +137,12 @@
 
 @media screen and (max-width: 416px) {
     
-    .spinner  {
+    .burger  {
         width: 30px;
         height: 30px;
     }
 
-    .spinner-line {
+    .burger-line {
         width: 20px;
         top: 6px;
         left: 5px;

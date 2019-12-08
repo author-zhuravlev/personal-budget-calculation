@@ -224,25 +224,25 @@ window.addEventListener('DOMContentLoaded', () => {
         },
         showResultTable: function() {
             const blockRight = document.querySelector(".block-right"),
-                spinner = document.querySelector(".spinner"),
+                burger = document.querySelector(".burger"),
                 closeBtn = document.querySelector(".close-modal-resultTable");
 
                     
-            spinner.addEventListener('touchstart', () => {
+            burger.addEventListener('touchstart', () => {
                 blockRight.classList.add('block-right-mobile');
                 blockRight.classList.remove('block-right');
 
                 const wrapperBlockRight = document.querySelector(".wrapper-block-right");
                 wrapperBlockRight.classList.add('wrapper-result-table');
                 
-                spinner.style.display = 'none';
+                burger.style.display = 'none';
 
                 closeBtn.style.display = 'block';
             });
         },
         closeResultTable: function() {
             const blockRight = document.querySelector(".block-right"),
-                spinner = document.querySelector(".spinner"),
+                burger = document.querySelector(".burger"),
                 closeBtn = document.querySelector(".close-modal-resultTable");              
 
             closeBtn.addEventListener('touchstart', () => {
@@ -252,7 +252,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 blockRight.classList.remove('block-right-mobile');
                 blockRight.classList.add('block-right');
 
-                spinner.style.display = 'block';
+                burger.style.display = 'block';
 
                 closeBtn.style.display = 'none';
             });

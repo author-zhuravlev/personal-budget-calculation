@@ -83,9 +83,9 @@ main.calculation {
     position: relative;
 }
 
-.spinner {
+.burger {
     background: #fff;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 40px;
@@ -93,7 +93,7 @@ main.calculation {
     display: none;
 }
 
-.spinner-line {
+.burger-line {
     content: '';
     background: #000;
     width: 25px;
