@@ -145,8 +145,12 @@ h1.calculator__title {
     display: flex;
 }
 
-.quantity-change-fields.minus {
+.calculator__button.minus {
     position: relative;
+}
+
+.calculator__button.plus {
+    color: #000;
 }
 
 .minus::before {
@@ -159,7 +163,7 @@ h1.calculator__title {
     left: 9px;
 }
 
-.quantity-change-fields {
+.calculator__button.minus, .calculator__button.plus {
     text-align: center;
     width: 30px;
     padding: 4px;

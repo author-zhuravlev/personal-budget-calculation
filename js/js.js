@@ -7,17 +7,17 @@ window.addEventListener('DOMContentLoaded', () => {
         optionalExpenses: {},
         income: [],
         savings : false,
-        blockInput: function(forbid, cursor) {
+        lockDataInput: function(disable, cursor) {
             const btns = document.querySelectorAll(".calculator .calculator__button"),
                 calculatorInp = document.querySelectorAll(".calculator .calculator__inp");
-        
+
             btns.forEach(item => {
-                item.disabled = forbid;
+                item.disabled = disable;
                 item.style.cursor = cursor;
             });
 
             calculatorInp.forEach(item => {
-                item.disabled = forbid;
+                item.disabled = disable;
             });
         },
         clearValue: function() {
@@ -28,38 +28,35 @@ window.addEventListener('DOMContentLoaded', () => {
             date.value = "";
         },
         addInput: function() {
-            const addBtn = document.querySelectorAll(".quantity-change-fields.plus");
-
+            const addBtn = document.querySelectorAll(".calculator__button.plus");
+        
             addBtn.forEach((item, i)=> {           
                 item.addEventListener('click', () => {
                     const calculatorBlock = document.createElement('div');
                     
                     calculatorBlock.classList.add('calculator__block');
                     item.parentNode.parentNode.insertBefore(calculatorBlock, item.parentNode);
-
+        
                     if (i % 2 == 0) {
                         const calculatorElemTwo = `
-                            <div class="calculator__block">
-                                <input type="text" class="calculator__inp two" placeholder="Наименование">
-                                <input type="text" class="calculator__inp two" placeholder="Цена">
-                            </div>
+                            <input type="text" class="calculator__inp two" placeholder="Наименование">
+                            <input type="text" class="calculator__inp two" placeholder="Цена">
                         `;
                         calculatorBlock.innerHTML = calculatorElemTwo;
-                    }else {
+                    } else {
                         const calculatorElemThree = `
-                            <div class="calculator__block">
-                                <input type="text" class="calculator__inp three">
-                                <input type="text" class="calculator__inp three">
-                                <input type="text" class="calculator__inp three">
-                            </div>
+                            <input type="text" class="calculator__inp three">
+                            <input type="text" class="calculator__inp three">
+                            <input type="text" class="calculator__inp three">
                         `;
                         calculatorBlock.innerHTML = calculatorElemThree;
                     }
+
                 });
             });
         },
         deleteInput: function() {
-            const deleteBtn = document.querySelectorAll(".quantity-change-fields.minus");
+            const deleteBtn = document.querySelectorAll(".calculator__button.minus");
 
             deleteBtn.forEach((item, i )=> { 
                 item.addEventListener('click', () => {
@@ -108,7 +105,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     dayValue.textContent = new Date(Date.parse(appData.timeData)).getDate();
 
                     appData.clearValue();
-                    appData.blockInput("", "pointer");
+                    appData.lockDataInput("", "pointer");
                 } else {
                     appData.clearValue();
                     money.placeholder = "Введите корректные данные!";
@@ -260,7 +257,7 @@ window.addEventListener('DOMContentLoaded', () => {
     };
 
     appData.startCalc();
-    appData.blockInput("true", "default");
+    appData.lockDataInput("true", "default");
     appData.addInput();
     appData.deleteInput();
     appData.possibleIncome();
@@ -268,9 +265,9 @@ window.addEventListener('DOMContentLoaded', () => {
     appData.showResultTable();
     appData.closeResultTable();
     
-    const obligatoryExpBtn = document.querySelector(".calculator__input-block_obligatory-expenses .calculator__button"),
-        optionalExpBtn = document.querySelector(".calculator__input-block_optional-expenses .calculator__button"),
-        budgetBtn = document.querySelector(".calculator__input-block_daily-budget-calculation .calculator__button"),
+    const obligatoryExpBtn = document.querySelector(".calculator__button.obligatory"),
+        optionalExpBtn = document.querySelector(".calculator__button.optional"),
+        budgetBtn = document.querySelector(".calculator__button.daily-budget-calculation"),
         sum = document.getElementById('sum'),
         percent = document.getElementById('percent');
 
@@ -280,3 +277,11 @@ window.addEventListener('DOMContentLoaded', () => {
     sum.addEventListener('input', appData.accumulationMoney);
     percent.addEventListener('input', appData.accumulationMoney);
 });
+
+
+
+
+
+
+
+
