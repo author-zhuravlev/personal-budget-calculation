@@ -4,7 +4,7 @@
 
 This project can help you plan your expenses
 
-**He can:**
+**Functionalities:**
 
 * calculate your budget for one day 
 * calculate your income level 
